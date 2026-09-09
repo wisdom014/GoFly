@@ -1,0 +1,9 @@
+const temporaryInspirations = [
+	{ title: 'The Best Mountain Getaways for Nature Lovers.', location: 'Canada', date: '12 Sep, 2025', description: 'Discover the best mountain getaways for nature lovers, where breathtaking landscapes meet unforgettable adventures.', slug: 'best-mountain-getaways', image: 'https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=1200&q=85', visits: 9820 },
+	{ title: 'Tropical Escapes & Beach Getaways.', location: 'Italy', date: '12 Sep, 2025', description: 'Escape to the world’s most breathtaking islands and immerse yourself in paradise.', slug: 'tropical-escapes', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85', visits: 12400 },
+	{ title: 'Crystal-Clear Waters & White Sands.', location: 'Rome', date: '12 Sep, 2025', description: 'Find calm waters, bright shores, and the perfect places to slow down and reconnect.', slug: 'crystal-clear-waters', image: 'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85', visits: 11300 },
+	{ title: 'Hiking, Trekking & Thrill-Seeking.', location: 'Brazil', date: '12 Sep, 2025', description: 'Explore inspiring trails and bold adventures for travelers who want to go further.', slug: 'hiking-trekking', image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=85', visits: 8760 },
+	{ title: 'Explore Culture, Art, & Timeless Landmarks.', location: 'France', date: '12 Sep, 2025', description: 'Travel through living history, remarkable art, and cities full of stories.', slug: 'culture-art-landmarks', image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=85', visits: 10450 },
+]
+
+export default temporaryInspirations
