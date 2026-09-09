@@ -41,8 +41,8 @@ function App() {
       <Discount />
       <Destination />
       <Service />
-      <Happiness />
       <Popular />
+      <Happiness />
       <Deals />
       <Customize />
       <Companies />
