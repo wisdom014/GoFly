@@ -38,18 +38,27 @@ const temporaryOffers = [
 function Discount() {
 	const [activeIndex, setActiveIndex] = useState(0)
 	const [isPaused, setIsPaused] = useState(false)
+	const [visibleCount, setVisibleCount] = useState(2)
 	const swipeStart = useRef(null)
+	const maxIndex = Math.max(0, temporaryOffers.length - visibleCount)
+
+	useEffect(() => {
+		const updateVisibleCount = () => setVisibleCount(window.innerWidth >= 1100 ? 3 : window.innerWidth >= 601 ? 2 : 1)
+		updateVisibleCount()
+		window.addEventListener('resize', updateVisibleCount)
+		return () => window.removeEventListener('resize', updateVisibleCount)
+	}, [])
 
 	useEffect(() => {
 		if (isPaused) return undefined
 		const timer = window.setInterval(() => {
-			setActiveIndex((current) => Math.min(current + 1, temporaryOffers.length - 1))
+			setActiveIndex((current) => Math.min(current + 1, maxIndex))
 		}, 4500)
 		return () => window.clearInterval(timer)
-	}, [isPaused])
+	}, [isPaused, maxIndex])
 
 	function goToSlide(index) {
-		setActiveIndex(Math.max(0, Math.min(index, temporaryOffers.length - 1)))
+		setActiveIndex(Math.max(0, Math.min(index, maxIndex)))
 	}
 
 	function handleSwipeStart(event) {
@@ -81,7 +90,7 @@ function Discount() {
 				onPointerUp={handleSwipeEnd}
 				onPointerCancel={handleSwipeEnd}
 			>
-				<div className="discount-track" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+				<div className="discount-track" style={{ transform: `translateX(-${activeIndex * (100 / visibleCount)}%)` }}>
 					{temporaryOffers.map((offer) => (
 						<article className="discount-slide" key={offer.name}>
 							<img src={offer.image} alt={`${offer.name} travel package`} draggable="false" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = fallbackImage }} />
@@ -96,8 +105,8 @@ function Discount() {
 				</div>
 			</div>
 
-			<div className="carousel-dots" role="status" aria-label={`Showing offer ${activeIndex + 1} of ${temporaryOffers.length}`}>
-				{temporaryOffers.map((offer, index) => (
+			<div className="carousel-dots" role="status" aria-label={`Showing offers ${activeIndex + 1} to ${Math.min(activeIndex + visibleCount, temporaryOffers.length)} of ${temporaryOffers.length}`}>
+				{temporaryOffers.slice(0, maxIndex + 1).map((offer, index) => (
 					<span className={`carousel-dot ${index === activeIndex ? 'active' : ''}`} key={offer.name} aria-hidden="true" />
 				))}
 			</div>

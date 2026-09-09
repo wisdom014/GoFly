@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import fallbackImage from '../assets/hero.png'
 import '../styles/popular.css'
 
@@ -67,7 +67,20 @@ function PackageCard({ packageItem }) {
 
 function Popular({ packages = temporaryPackages, title = 'Popular Travel Packages', description = 'A curated list of the most popular travel packages based on different destinations.', carousel = false }) {
 	const [activeCard, setActiveCard] = useState(0)
+	const [visibleCount, setVisibleCount] = useState(1)
 	const swipeStart = useRef(null)
+	const maxCard = Math.max(0, packages.length - visibleCount)
+
+	useEffect(() => {
+		if (!carousel) return undefined
+		const updateVisibleCount = () => {
+			const width = window.innerWidth
+			setVisibleCount(width >= 1100 ? 3 : width >= 601 ? 2 : 1)
+		}
+		updateVisibleCount()
+		window.addEventListener('resize', updateVisibleCount)
+		return () => window.removeEventListener('resize', updateVisibleCount)
+	}, [carousel])
 
 	function handleCarouselStart(event) {
 		swipeStart.current = event.clientX
@@ -77,7 +90,7 @@ function Popular({ packages = temporaryPackages, title = 'Popular Travel Package
 	function handleCarouselEnd(event) {
 		if (swipeStart.current === null) return
 		const distance = event.clientX - swipeStart.current
-		if (Math.abs(distance) > 45) setActiveCard((current) => Math.max(0, Math.min(current + (distance < 0 ? 1 : -1), packages.length - 1)))
+		if (Math.abs(distance) > 45) setActiveCard((current) => Math.max(0, Math.min(current + (distance < 0 ? 1 : -1), maxCard)))
 		swipeStart.current = null
 		event.currentTarget.releasePointerCapture?.(event.pointerId)
 	}
@@ -88,9 +101,9 @@ function Popular({ packages = temporaryPackages, title = 'Popular Travel Package
 			{carousel ? (
 				<>
 					<div className="package-carousel" onPointerDown={handleCarouselStart} onPointerUp={handleCarouselEnd} onPointerCancel={handleCarouselEnd}>
-						<div className="package-carousel-track" style={{ transform: `translateX(-${activeCard * 100}%)` }}>{packages.map((packageItem) => <div className="package-carousel-slide" key={packageItem.title}><PackageCard packageItem={packageItem} /></div>)}</div>
+						<div className="package-carousel-track" style={{ transform: `translateX(-${activeCard * (100 / visibleCount)}%)` }}>{packages.map((packageItem) => <div className="package-carousel-slide" key={packageItem.title}><PackageCard packageItem={packageItem} /></div>)}</div>
 					</div>
-					<div className="package-carousel-dots" role="status" aria-label={`Showing day trip ${activeCard + 1} of ${packages.length}`}>{packages.map((packageItem, index) => <span className={index === activeCard ? 'active' : ''} key={packageItem.title} />)}</div>
+					<div className="package-carousel-dots" role="status" aria-label={`Showing package ${activeCard + 1} of ${packages.length}`}>{packages.slice(0, maxCard + 1).map((packageItem, index) => <span className={index === activeCard ? 'active' : ''} key={packageItem.title} />)}</div>
 				</>
 			) : <div className="package-grid">{packages.map((packageItem) => <PackageCard packageItem={packageItem} key={packageItem.title} />)}</div>}
 		</section>

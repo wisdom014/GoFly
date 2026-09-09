@@ -57,6 +57,30 @@
   }
 }
 
+@media (min-width: 851px) and (max-width: 1100px) {
+  .stats-section {
+    padding: 40px 30px 46px;
+  }
+  .stats-list {
+    gap: 18px;
+  }
+  .stat-item {
+    gap: 10px;
+  }
+  .stat-icon {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    font-size: 34px;
+  }
+  .stat-copy strong {
+    font-size: 26px;
+  }
+  .stat-copy span {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 460px) {
   .stats-section {
     padding: 38px 22px 44px;

@@ -1,2 +1,224 @@
-.reviews-section { padding: 56px 13px 65px; background: #f3f3ff url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png'); text-align: center; }.reviews-heading { width: min(100%, 700px); margin: 0 auto 42px; }.reviews-heading h2 { margin: 0 0 12px; color: #111; font-size: clamp(29px, 5vw, 39px); font-weight: 800; }.reviews-heading p { margin: 0; color: #424242; font-size: 16px; line-height: 1.7; }.reviews-carousel { width: min(100%, 940px); margin: 0 auto; overflow: hidden; touch-action: pan-y; -webkit-user-select: none; user-select: none; cursor: grab; }.reviews-carousel:active { cursor: grabbing; }.reviews-track { display: flex; transition: transform 650ms cubic-bezier(.22,.61,.36,1); }.review-slide { flex: 0 0 100%; padding: 0 1px; box-sizing: border-box; }.review-card { min-height: 300px; padding: 30px 28px; box-sizing: border-box; border-radius: 13px; background: #fff; text-align: left; }.review-author { display: flex; align-items: center; gap: 19px; }.review-author img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }.review-author strong, .review-author span { display: block; }.review-author strong { font-size: 17px; }.review-author span { margin-top: 5px; font-size: 15px; }.review-stars { margin-top: 25px; display: flex; gap: 2px; color: #d7d7d7; font-size: 17px; }.review-stars .filled { color: #00ad79; }.review-card h3 { margin: 22px 0 10px; color: #111; font-size: 18px; }.review-card p { margin: 0; color: #3d3d3d; font-size: 16px; line-height: 1.9; }.review-platforms { margin-top: 30px; display: flex; align-items: center; justify-content: center; gap: 38px; color: #222; }.review-platforms > div { display: flex; flex-direction: column; gap: 7px; }.review-platforms strong { font-size: 19px; }.review-platforms span { font-size: 15px; }.review-platforms b { color: #00ad79; letter-spacing: 2px; }.review-platforms em { margin-right: 7px; color: #111; font-size: 25px; font-style: normal; font-weight: 800; }.review-platforms > div:last-child b { color: #00ad79; }
-@media (max-width: 600px) { .reviews-section { padding: 44px 13px 52px; }.reviews-heading { margin-bottom: 30px; }.reviews-heading p { font-size: 15px; }.review-card { min-height: 300px; padding: 27px 20px; }.review-card p { font-size: 15px; line-height: 1.75; }.review-platforms { gap: 20px; }.review-platforms strong { font-size: 16px; }.review-platforms span { font-size: 13px; }.review-platforms em { font-size: 22px; } }
+.reviews-section {
+  padding: 56px 13px 65px;
+  background: #f3f3ff
+    url("https://www.transparenttextures.com/patterns/subtle-white-feathers.png");
+  text-align: center;
+}
+.reviews-heading {
+  width: min(100%, 700px);
+  margin: 0 auto 42px;
+}
+.reviews-heading h2 {
+  margin: 0 0 12px;
+  color: #111;
+  font-size: clamp(29px, 5vw, 39px);
+  font-weight: 800;
+}
+.reviews-heading p {
+  margin: 0;
+  color: #424242;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.reviews-carousel {
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+  overflow: hidden;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
+}
+.reviews-carousel:active {
+  cursor: grabbing;
+}
+.reviews-track {
+  display: flex;
+  transition: transform 650ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.review-slide {
+  flex: 0 0 100%;
+  padding: 0 1px;
+  box-sizing: border-box;
+}
+.review-card {
+  min-height: 300px;
+  padding: 30px 28px;
+  box-sizing: border-box;
+  border-radius: 13px;
+  background: #fff;
+  text-align: left;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+}
+.review-author img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.review-author strong,
+.review-author span {
+  display: block;
+}
+.review-author strong {
+  font-size: 17px;
+}
+.review-author span {
+  margin-top: 5px;
+  font-size: 15px;
+}
+.review-stars {
+  margin-top: 25px;
+  display: flex;
+  gap: 2px;
+  color: #d7d7d7;
+  font-size: 17px;
+}
+.review-stars .filled {
+  color: #00ad79;
+}
+.review-card h3 {
+  margin: 22px 0 10px;
+  color: #111;
+  font-size: 18px;
+}
+.review-card p {
+  margin: 0;
+  color: #3d3d3d;
+  font-size: 16px;
+  line-height: 1.9;
+}
+.review-platforms {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+  color: #222;
+}
+.review-platforms > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.review-platforms strong {
+  font-size: 19px;
+}
+.review-platforms span {
+  font-size: 15px;
+}
+.review-platforms b {
+  color: #00ad79;
+  letter-spacing: 2px;
+}
+.review-platforms em {
+  margin-right: 7px;
+  color: #111;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 800;
+}
+.review-platforms > div:last-child b {
+  color: #00ad79;
+}
+@media (max-width: 600px) {
+  .reviews-section {
+    padding: 44px 13px 52px;
+  }
+  .reviews-heading {
+    margin-bottom: 30px;
+  }
+  .reviews-heading p {
+    font-size: 15px;
+  }
+  .review-card {
+    min-height: 300px;
+    padding: 27px 20px;
+  }
+  .review-card p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .review-platforms {
+    gap: 20px;
+  }
+  .review-platforms strong {
+    font-size: 16px;
+  }
+  .review-platforms span {
+    font-size: 13px;
+  }
+  .review-platforms em {
+    font-size: 22px;
+  }
+}
+@media (min-width: 601px) and (max-width: 980px) {
+  .reviews-section {
+    padding: 42px 24px 54px;
+  }
+  .review-card {
+    min-height: 260px;
+    padding: 24px;
+  }
+  .review-card p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+@media (min-width: 981px) and (max-width: 1100px) {
+  .reviews-section {
+    padding: 48px 30px 58px;
+  }
+  .reviews-heading {
+    margin-bottom: 30px;
+  }
+  .reviews-carousel {
+    width: min(100%, 820px);
+  }
+  .review-card {
+    min-height: 270px;
+    padding: 26px;
+  }
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .reviews-carousel {
+    width: min(100%, 920px);
+  }
+  .review-slide {
+    flex-basis: 50%;
+    padding-inline: 7px;
+  }
+  .review-slide:first-child {
+    padding-left: 0;
+  }
+  .review-slide:last-child {
+    padding-right: 0;
+  }
+  .review-card {
+    min-height: 250px;
+    padding: 22px;
+  }
+}
+@media (min-width: 1101px) {
+  .reviews-carousel {
+    width: min(100%, var(--content-width));
+  }
+  .review-slide {
+    flex-basis: 33.333%;
+    padding-inline: 8px;
+  }
+  .review-slide:first-child {
+    padding-left: 0;
+  }
+  .review-slide:last-child {
+    padding-right: 0;
+  }
+  .review-card {
+    min-height: 260px;
+    padding: 24px;
+  }
+}

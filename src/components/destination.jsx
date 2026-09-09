@@ -40,16 +40,28 @@ const regions = ['Africa', 'Asia', 'Europe', 'Middle East', 'North America', 'Oc
 function Destination() {
 	const [activeRegion, setActiveRegion] = useState('Africa')
 	const [activeIndex, setActiveIndex] = useState(0)
+	const [visibleCount, setVisibleCount] = useState(1)
 	const [isPaused, setIsPaused] = useState(false)
 	const swipeStart = useRef(null)
 	const destinations = useMemo(() => destinationCatalog.filter((item) => item.region === activeRegion), [activeRegion])
 	const activeDestination = destinations[activeIndex] || destinations[0]
+	const maxIndex = Math.max(0, destinations.length - visibleCount)
+
+	useEffect(() => {
+		const updateVisibleCount = () => {
+			const width = window.innerWidth
+			setVisibleCount(width >= 1100 ? 5 : width >= 601 ? 3 : 1)
+		}
+		updateVisibleCount()
+		window.addEventListener('resize', updateVisibleCount)
+		return () => window.removeEventListener('resize', updateVisibleCount)
+	}, [])
 
 	useEffect(() => {
 		if (isPaused || destinations.length < 2) return undefined
-		const timer = window.setInterval(() => setActiveIndex((current) => Math.min(current + 1, destinations.length - 1)), 5000)
+		const timer = window.setInterval(() => setActiveIndex((current) => Math.min(current + 1, maxIndex)), 5000)
 		return () => window.clearInterval(timer)
-	}, [destinations.length, isPaused])
+	}, [destinations.length, isPaused, maxIndex])
 
 	function handleSwipeStart(event) {
 		swipeStart.current = event.clientX
@@ -60,7 +72,7 @@ function Destination() {
 	function handleSwipeEnd(event) {
 		if (swipeStart.current === null) return
 		const distance = event.clientX - swipeStart.current
-		if (Math.abs(distance) > 45) setActiveIndex((current) => Math.max(0, Math.min(current + (distance < 0 ? 1 : -1), destinations.length - 1)))
+		if (Math.abs(distance) > 45) setActiveIndex((current) => Math.max(0, Math.min(current + (distance < 0 ? 1 : -1), maxIndex)))
 		swipeStart.current = null
 		setIsPaused(false)
 	}
@@ -75,7 +87,7 @@ function Destination() {
 			</div>
 
 			<div className="destination-carousel" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onPointerDown={handleSwipeStart} onPointerUp={handleSwipeEnd} onPointerCancel={handleSwipeEnd}>
-				<div className="destination-track" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+				<div className="destination-track" style={{ transform: `translateX(-${activeIndex * (100 / visibleCount)}%)` }}>
 					{destinations.map((destination) => (
 						<article className="destination-slide" key={destination.slug}>
 							<div className="destination-image" role="img" aria-label={`${destination.name} destination`}>
@@ -95,7 +107,7 @@ function Destination() {
 			</div>
 
 			<div className="destination-dots" role="status" aria-label={`Showing ${activeDestination.name}, destination ${activeIndex + 1} of ${destinations.length}`}>
-				{destinations.map((destination, index) => <span className={`destination-dot ${index === activeIndex ? 'active' : ''}`} aria-hidden="true" key={destination.slug} />)}
+				{destinations.slice(0, maxIndex + 1).map((destination, index) => <span className={`destination-dot ${index === activeIndex ? 'active' : ''}`} aria-hidden="true" key={destination.slug} />)}
 			</div>
 		</section>
 	)
