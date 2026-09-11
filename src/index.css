@@ -48,6 +48,26 @@ body {
   box-sizing: border-box;
 }
 
+/* Use the full viewport while keeping regular sections 3% from each edge. */
+#root> :not(.happiness-section,
+  .site-footer,
+  .stats-section,
+  .reviews-section) {
+  width: 100%;
+  margin-inline: 0;
+  padding-inline: 3%;
+  box-sizing: border-box;
+}
+
+#root>.happiness-section,
+#root>.site-footer,
+#root>.stats-section,
+#root>.reviews-section {
+  width: 100%;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
 h1,
 h2 {
   font-family: var(--heading);
@@ -60,10 +80,12 @@ h2 {
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
+
   @media (max-width: 1024px) {
     font-size: 20px;
   }
 }
+
 p {
   margin: 0;
 }

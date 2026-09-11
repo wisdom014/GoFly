@@ -43,11 +43,15 @@ function Discount() {
 	const maxIndex = Math.max(0, temporaryOffers.length - visibleCount)
 
 	useEffect(() => {
-		const updateVisibleCount = () => setVisibleCount(window.innerWidth >= 1100 ? 3 : window.innerWidth >= 601 ? 2 : 1)
+		const updateVisibleCount = () => setVisibleCount(window.innerWidth > 775 ? 3 : window.innerWidth >= 768 ? 2 : 1)
 		updateVisibleCount()
 		window.addEventListener('resize', updateVisibleCount)
 		return () => window.removeEventListener('resize', updateVisibleCount)
 	}, [])
+
+	useEffect(() => {
+		setActiveIndex((current) => Math.min(current, maxIndex))
+	}, [maxIndex])
 
 	useEffect(() => {
 		if (isPaused) return undefined
@@ -56,10 +60,6 @@ function Discount() {
 		}, 4500)
 		return () => window.clearInterval(timer)
 	}, [isPaused, maxIndex])
-
-	function goToSlide(index) {
-		setActiveIndex(Math.max(0, Math.min(index, maxIndex)))
-	}
 
 	function handleSwipeStart(event) {
 		swipeStart.current = event.clientX
@@ -70,9 +70,10 @@ function Discount() {
 	function handleSwipeEnd(event) {
 		if (swipeStart.current === null) return
 		const distance = event.clientX - swipeStart.current
-		if (Math.abs(distance) > 45) goToSlide(activeIndex + (distance < 0 ? 1 : -1))
+		if (Math.abs(distance) > 45) setActiveIndex((current) => Math.max(0, Math.min(current + (distance < 0 ? 1 : -1), maxIndex)))
 		swipeStart.current = null
 		setIsPaused(false)
+		event.currentTarget.releasePointerCapture?.(event.pointerId)
 	}
 
 	return (

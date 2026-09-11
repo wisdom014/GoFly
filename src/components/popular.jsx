@@ -75,12 +75,16 @@ function Popular({ packages = temporaryPackages, title = 'Popular Travel Package
 		if (!carousel) return undefined
 		const updateVisibleCount = () => {
 			const width = window.innerWidth
-			setVisibleCount(width >= 1100 ? 3 : width >= 601 ? 2 : 1)
+			setVisibleCount(width > 775 ? 3 : width >= 768 ? 2 : 1)
 		}
 		updateVisibleCount()
 		window.addEventListener('resize', updateVisibleCount)
 		return () => window.removeEventListener('resize', updateVisibleCount)
 	}, [carousel])
+
+	useEffect(() => {
+		setActiveCard((current) => Math.min(current, maxCard))
+	}, [maxCard])
 
 	function handleCarouselStart(event) {
 		swipeStart.current = event.clientX

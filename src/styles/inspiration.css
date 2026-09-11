@@ -3,22 +3,26 @@
   background: #fff;
   text-align: center;
 }
+
 .inspiration-heading {
   width: min(100%, 680px);
   margin: 0 auto 42px;
 }
+
 .inspiration-heading h2 {
   margin: 0 0 12px;
   color: #111;
   font-size: clamp(28px, 4vw, 36px);
   font-weight: 800;
 }
+
 .inspiration-heading p {
   margin: 0;
   color: #424242;
   font-size: 16px;
   line-height: 1.65;
 }
+
 .inspiration-carousel {
   width: min(100%, 980px);
   margin: 0 auto;
@@ -28,19 +32,23 @@
   user-select: none;
   cursor: grab;
 }
+
 .inspiration-carousel:active {
   cursor: grabbing;
 }
+
 .inspiration-track {
   display: flex;
   transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
+
 .inspiration-slide {
   flex: 0 0 100%;
   min-width: 0;
   padding: 0 1px;
   box-sizing: border-box;
 }
+
 .inspiration-card {
   overflow: hidden;
   border: 1px solid #e2e2e2;
@@ -48,11 +56,13 @@
   background: #fff;
   text-align: left;
 }
+
 .inspiration-image-link {
   display: block;
   height: clamp(240px, 34vw, 330px);
   overflow: hidden;
 }
+
 .inspiration-image-link img {
   width: 100%;
   height: 100%;
@@ -63,50 +73,60 @@
     transform 450ms ease,
     filter 450ms ease;
 }
+
 .inspiration-card:hover .inspiration-image-link img {
   transform: scale(1.05);
   filter: saturate(1.1);
 }
+
 .inspiration-copy {
   padding: 23px 16px 27px;
 }
+
 .inspiration-location,
 .inspiration-title {
   display: block;
   color: #151515;
   text-decoration: none;
 }
+
 .inspiration-location {
   margin-bottom: 13px;
   font-size: 16px;
   font-weight: 700;
 }
+
 .inspiration-location:hover,
 .inspiration-title:hover {
   color: #2183f5;
 }
+
 .inspiration-title {
   font-size: clamp(21px, 3vw, 28px);
   font-weight: 800;
   line-height: 1.25;
 }
+
 .inspiration-date {
   margin: 19px 0 0;
   color: #555;
   font-size: 15px;
 }
+
 .inspiration-rule {
   width: 70%;
   height: 1px;
   margin: 22px auto;
   background: #e7e7e7;
 }
+
 .inspiration-description {
   margin: 0;
   color: #666;
   font-size: 15px;
   line-height: 1.8;
 }
+
 .inspiration-controls {
   margin: 25px auto 0;
   display: flex;
@@ -114,7 +134,8 @@
   justify-content: center;
   gap: 20px;
 }
-.inspiration-controls > button {
+
+.inspiration-controls>button {
   width: 32px;
   height: 32px;
   border: 1px solid #ddd;
@@ -123,14 +144,17 @@
   color: #2183f5;
   cursor: pointer;
 }
-.inspiration-controls > button:disabled {
+
+.inspiration-controls>button:disabled {
   opacity: 0.35;
 }
+
 .inspiration-dots {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .inspiration-dots span {
   width: 9px;
   height: 9px;
@@ -140,11 +164,13 @@
     width 200ms ease,
     background 200ms ease;
 }
+
 .inspiration-dots span.active {
   width: 25px;
   border-radius: 99px;
   background: #2183f5;
 }
+
 .view-inspirations {
   display: inline-block;
   margin-top: 25px;
@@ -156,80 +182,108 @@
   font-weight: 700;
   text-decoration: none;
 }
+
 .view-inspirations:hover {
   border-color: #2183f5;
   color: #2183f5;
 }
-@media (max-width: 600px) {
+
+@media (max-width: 767px) {
   .inspiration-section {
     padding: 44px 13px 55px;
   }
+
   .inspiration-heading {
     margin-bottom: 30px;
   }
+
   .inspiration-heading p {
     font-size: 15px;
   }
+
   .inspiration-image-link {
     height: 245px;
   }
+
   .inspiration-copy {
     padding: 20px 14px 24px;
   }
+
   .inspiration-description {
     font-size: 14px;
   }
-  .inspiration-controls > button {
+
+  .inspiration-controls>button {
     display: none;
   }
 }
-@media (min-width: 601px) and (max-width: 1100px) {
+
+@media (min-width: 768px) and (max-width: 1023px) {
   .inspiration-section {
     padding: 48px 24px 60px;
   }
+
   .inspiration-heading {
     margin-bottom: 32px;
   }
+
   .inspiration-image-link {
     height: 290px;
   }
 }
-@media (min-width: 601px) {
+
+@media (min-width: 768px) {
   .inspiration-carousel {
     width: min(100%, var(--content-width));
   }
+
   .inspiration-card {
     display: grid;
     grid-template-columns: 42% 58%;
     min-height: 280px;
   }
+
   .inspiration-image-link {
     height: 100%;
     min-height: 280px;
   }
+
   .inspiration-copy {
     padding: 24px 22px;
     align-self: center;
   }
+
   .inspiration-title {
     font-size: clamp(20px, 2.4vw, 28px);
   }
+
   .inspiration-description {
     font-size: 14px;
     line-height: 1.6;
   }
 }
-@media (min-width: 1101px) {
+
+@media (min-width: 1023px) {
   .inspiration-section {
     padding-inline: 32px;
   }
+
   .inspiration-card {
     grid-template-columns: 38% 62%;
     min-height: 315px;
   }
+
   .inspiration-image-link {
     min-height: 315px;
   }
+
+  .inspiration-slide {
+    flex: 0 0 50%;
+    min-width: 0;
+    padding: 0 1px;
+    box-sizing: border-box;
+  }
+
   .inspiration-copy {
     padding: 30px;
   }

@@ -91,6 +91,44 @@ function DestinationField({ id, meta, value, catalog, onChange }) {
 	)
 }
 
+function SelectField({ id, meta, value, options, onChange }) {
+	const [isOpen, setIsOpen] = useState(false)
+
+	return (
+		<div className="destination-wrap">
+			<button
+				className="booking-field select-field-button"
+				type="button"
+				aria-expanded={isOpen}
+				aria-controls={`${id}-options`}
+				onClick={() => setIsOpen((current) => !current)}
+			>
+				<span className="field-icon" aria-hidden="true">{meta.icon}</span>
+				<span className="field-copy">
+					<span className={`field-label ${value ? 'selected-value' : ''}`}>{value || meta.label}</span>
+					<span className="field-subtext">{meta.sublabel}</span>
+				</span>
+			</button>
+			{isOpen && (
+				<div className="destination-results select-results" id={`${id}-options`} role="listbox" aria-label={meta.sublabel}>
+					{options.map((option) => (
+						<button
+							type="button"
+							className="destination-result"
+							role="option"
+							aria-selected={value === option}
+							key={option}
+							onMouseDown={() => { onChange(option); setIsOpen(false) }}
+						>
+							<span><strong>{option}</strong><small>{meta.sublabel}</small></span>
+						</button>
+					))}
+				</div>
+			)}
+		</div>
+	)
+}
+
 function Hero() {
 	const [activeMode, setActiveMode] = useState('Tours')
 	const [catalog] = useState(temporaryCatalog)
@@ -148,7 +186,7 @@ function Hero() {
 						if (meta.type === 'date') return <DateField key={field} id={field} meta={meta} value={values[field]} onChange={(value) => updateValue(field, value)} />
 						if (meta.type === 'destination' || meta.type === 'country') return <DestinationField key={field} id={field} meta={meta} value={values[field]} catalog={meta.type === 'country' ? catalog.countries.map((name) => ({ name, count: '01' })) : catalog.destinations} onChange={(value) => updateValue(field, value)} />
 						const options = meta.options === 'guests' ? ['1 Adults, 0 Child', '2 Adults, 0 Child', '2 Adults, 1 Child', '4 Adults, 2 Children'] : catalog[meta.options]
-						return <label className="booking-field" key={field} htmlFor={field}><span className="field-icon" aria-hidden="true">{meta.icon}</span><span className="field-copy"><span className={`field-label ${values[field] ? 'selected-value' : ''}`}>{values[field] || meta.label}</span><span className="field-subtext">{meta.sublabel}</span><select id={field} value={values[field]} onChange={(event) => updateValue(field, event.target.value)} aria-label={meta.sublabel}><option value="">{meta.sublabel}</option>{options.map((option) => <option key={option} value={option}>{option}</option>)}</select></span></label>
+						return <SelectField key={field} id={field} meta={meta} value={values[field]} options={options} onChange={(value) => updateValue(field, value)} />
 					})}
 				</div>
 

@@ -1,8 +1,8 @@
 .happiness-section { padding: 0 0 34px; background: #fff; }
-.happiness-flyer { position: relative; width: min(100%, 980px); min-height: 480px; margin: 0 auto; overflow: hidden; background: linear-gradient(rgba(7, 34, 53, .25), rgba(7, 34, 53, .48)), url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85') center / cover; }
+.happiness-flyer { position: relative; width: 100%; min-height: 480px; margin: 0 auto; overflow: hidden; background: linear-gradient(rgba(7, 34, 53, .25), rgba(7, 34, 53, .48)), url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85') center / cover; }
 .happiness-copy { min-height: 480px; padding: 64px 20px 58px; box-sizing: border-box; display: flex; align-items: center; flex-direction: column; color: #fff; text-align: center; }
 .happiness-copy p { margin: 0 0 22px; font-family: Georgia, serif; font-size: 20px; font-style: italic; }
 .happiness-copy h2 { margin: 0; color: #fff; font-size: clamp(39px, 6vw, 64px); font-weight: 800; line-height: .99; text-align: center; }
 .happiness-copy h3 { margin: 34px 0 10px; color: #fff; font-size: 21px; }.happiness-copy strong { font-size: 16px; }
 .happiness-copy a { margin-top: 39px; padding: 17px 25px; border-radius: 99px; background: #2183f5; color: #fff; font-size: 15px; font-weight: 800; text-decoration: none; transition: transform 180ms ease, background 180ms ease; }.happiness-copy a:hover { background: #116edb; transform: translateY(-2px); }
-@media (max-width: 600px) { .happiness-flyer, .happiness-copy { min-height: 458px; }.happiness-copy { padding-top: 62px; }.happiness-copy p { font-size: 17px; }.happiness-copy h2 { font-size: clamp(39px, 11vw, 53px); }.happiness-copy h3 { margin-top: 34px; font-size: 19px; } }
+@media (max-width: 767px) { .happiness-flyer, .happiness-copy { min-height: 458px; }.happiness-copy { padding-top: 62px; }.happiness-copy p { font-size: 17px; }.happiness-copy h2 { font-size: clamp(39px, 11vw, 53px); }.happiness-copy h3 { margin-top: 34px; font-size: 19px; } }

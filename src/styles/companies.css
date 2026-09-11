@@ -1,3 +1,62 @@
-.companies-section { padding: 44px 10px 54px; overflow: hidden; background: #fff; text-align: center; }.companies-section h2 { margin: 0 0 28px; color: #555; font-size: 20px; }.company-marquee { width: min(100%, 930px); margin: 0 auto; overflow: hidden; }.company-track { width: max-content; display: flex; align-items: center; animation: company-scroll 24s linear infinite; }.company-track img { width: 175px; height: 56px; margin: 0 17px; object-fit: contain; }.company-marquee:hover .company-track { animation-play-state: paused; }
-@keyframes company-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (max-width: 600px) { .companies-section { padding-block: 32px 42px; }.companies-section h2 { font-size: 17px; }.company-track img { width: 145px; height: 48px; margin-inline: 10px; } }
+.companies-section {
+ padding: 44px 10px 54px;
+ overflow: hidden;
+ background: #fff;
+ text-align: center;
+}
+
+.companies-section h2 {
+ margin: 0 0 28px;
+ color: #555;
+ font-size: 20px;
+}
+
+.company-marquee {
+ width: min(100%, 930px);
+ margin: 0 auto;
+ overflow: hidden;
+}
+
+.company-track {
+ width: max-content;
+ display: flex;
+ align-items: center;
+ animation: company-scroll 24s linear infinite;
+}
+
+.company-track img {
+ width: 175px;
+ height: 56px;
+ margin: 0 17px;
+ object-fit: contain;
+}
+
+.company-marquee:hover .company-track {
+ animation-play-state: paused;
+}
+
+@keyframes company-scroll {
+ from {
+  transform: translateX(0);
+ }
+
+ to {
+  transform: translateX(-50%);
+ }
+}
+
+@media (max-width: 600px) {
+ .companies-section {
+  padding-block: 32px 42px;
+ }
+
+ .companies-section h2 {
+  font-size: 17px;
+ }
+
+ .company-track img {
+  width: 145px;
+  height: 48px;
+  margin-inline: 10px;
+ }
+}

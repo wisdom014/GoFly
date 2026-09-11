@@ -62,9 +62,11 @@
 .discount-slide:first-child {
   padding-left: 0;
 }
+
 .discount-slide:last-child {
   padding-right: 0;
 }
+
 .discount-slide img {
   border-radius: 12px;
 }
@@ -81,11 +83,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 111, 178, 0.28),
-    rgba(0, 111, 178, 0.02) 70%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 111, 178, 0.28),
+      rgba(0, 111, 178, 0.02) 70%);
   border-radius: 12px;
   pointer-events: none;
 }
@@ -165,73 +165,101 @@
   background: #2183f5;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .discount-section {
     margin-top: 70px;
     padding: 36px 10px 40px;
   }
+
   .discount-heading {
     margin-bottom: 30px;
   }
+
   .discount-heading p {
     font-size: 15px;
   }
+
   .discount-slide {
     height: 168px;
     padding-inline: 3px;
   }
+
   .discount-slide {
     flex-basis: 100%;
     padding-inline: 0;
   }
+
   .offer-overlay {
     top: 11px;
     left: 10px;
   }
+
   .offer-duration {
     margin-top: 6px;
     padding: 5px 6px;
   }
+
   .carousel-arrow {
     opacity: 1;
   }
 }
 
-@media (min-width: 601px) and (max-width: 1100px) {
+@media (min-width: 768px) and (max-width: 775px) {
   .discount-section {
     margin-top: 34px;
     padding: 44px 24px 52px;
   }
+
   .discount-heading {
     margin-bottom: 30px;
   }
+
   .discount-heading h2 {
     font-size: 32px;
   }
+
   .discount-heading p {
     font-size: 15px;
   }
+
   .discount-carousel {
-    width: min(100%, 820px);
+    width: 100%;
     border-radius: 16px;
   }
+
   .discount-slide {
+    flex-basis: 50%;
     height: 220px;
   }
+
   .offer-overlay {
     top: 16px;
     left: 24px;
   }
 }
 
-@media (min-width: 1101px) {
+@media (min-width: 776px) and (max-width: 1099px) {
   .discount-slide {
     flex-basis: 33.333%;
     height: 230px;
   }
+
   .discount-carousel {
-    width: min(100%, var(--content-width));
+    width: 100%;
   }
+
+  .offer-overlay {
+    top: 16px;
+    left: 24px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .discount-slide {
+    flex-basis: 33.333%;
+    height: 230px;
+  }
+
   .offer-overlay {
     top: 16px;
     left: 24px;

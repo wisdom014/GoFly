@@ -1,31 +1,33 @@
 .stats-section {
   padding: 48px 22px 54px;
   background: #f4f4f4;
+  text-align: center;
 }
 
 .stats-list {
-  width: min(100%, 920px);
+  width: min(100%, 1100px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 26px;
+  justify-items: center;
+  gap: 20px;
 }
 
 .stat-item {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   min-width: 0;
 }
 
 .stat-icon {
-  width: 54px;
-  height: 54px;
-  flex: 0 0 54px;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
   display: grid;
   place-items: center;
   color: #1682ff;
-  font-size: 42px;
+  font-size: 38px;
   font-weight: 700;
   line-height: 1;
 }
@@ -38,15 +40,15 @@
 
 .stat-copy strong {
   color: #080808;
-  font-size: clamp(25px, 3vw, 32px);
+  font-size: clamp(22px, 2.4vw, 30px);
   font-weight: 800;
   line-height: 1.1;
 }
 
 .stat-copy span {
-  margin-top: 7px;
+  margin-top: 6px;
   color: #111;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.25;
 }
 
@@ -61,21 +63,26 @@
   .stats-section {
     padding: 40px 30px 46px;
   }
+
   .stats-list {
-    gap: 18px;
+    gap: 16px;
   }
+
   .stat-item {
     gap: 10px;
   }
+
   .stat-icon {
-    width: 44px;
-    height: 44px;
-    flex-basis: 44px;
-    font-size: 34px;
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    font-size: 30px;
   }
+
   .stat-copy strong {
-    font-size: 26px;
+    font-size: 22px;
   }
+
   .stat-copy span {
     font-size: 12px;
   }
@@ -85,13 +92,16 @@
   .stats-section {
     padding: 38px 22px 44px;
   }
+
   .stats-list {
     grid-template-columns: 1fr;
     gap: 25px;
   }
+
   .stat-item {
     gap: 14px;
   }
+
   .stat-icon {
     width: 50px;
     height: 50px;

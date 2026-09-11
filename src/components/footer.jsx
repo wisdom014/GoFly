@@ -1,4 +1,5 @@
 import '../styles/footer.css'
+import { useEffect, useState } from 'react'
 
 const topDestinations = [
 	['Maldives Tour', '/destination/maldives'],
@@ -30,6 +31,26 @@ function FooterLinks({ title, links }) {
 	return <section className="footer-link-group"><h2>{title}</h2><ul>{links.map(([label, href]) => <li key={label}><a href={href}>{label}</a></li>)}</ul></section>
 }
 
+function BackToTop() {
+	const [progress, setProgress] = useState(0)
+
+	useEffect(() => {
+		const updateProgress = () => {
+			const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight
+			setProgress(scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0)
+		}
+		updateProgress()
+		window.addEventListener('scroll', updateProgress, { passive: true })
+		window.addEventListener('resize', updateProgress)
+		return () => {
+			window.removeEventListener('scroll', updateProgress)
+			window.removeEventListener('resize', updateProgress)
+		}
+	}, [])
+
+	return <button className="back-to-top" type="button" aria-label="Back to top" style={{ '--scroll-progress': `${progress * 360}deg` }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑</button>
+}
+
 function Footer() {
 	return (
 		<footer className="site-footer">
@@ -47,6 +68,7 @@ function Footer() {
 			</div>
 
 			<div className="footer-bottom"><p>Copyright 2025 <strong>Egens Lab</strong> | All Right Reserved.</p><p>Accepted Payment Methods:</p><div className="payment-methods"><span>VISA</span><span>PayPal</span><span>G Pay</span></div></div>
+			<BackToTop />
 		</footer>
 	)
 }

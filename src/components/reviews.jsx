@@ -10,28 +10,31 @@ function ReviewCard({ review }) {
 function Reviews({ reviews = temporaryReviews }) {
 	const [activeIndex, setActiveIndex] = useState(0)
 	const [visibleCount, setVisibleCount] = useState(1)
+	const [isPaused, setIsPaused] = useState(false)
 	const swipeStart = useRef(null)
-	const slides = [...reviews, ...reviews, ...reviews]
-	const maxIndex = reviews.length * 2 - visibleCount
+	const slides = reviews
+	const maxIndex = Math.max(0, reviews.length - visibleCount)
 
 	useEffect(() => {
-		const updateVisibleCount = () => setVisibleCount(window.innerWidth >= 1100 ? 3 : window.innerWidth >= 601 ? 2 : 1)
+		const updateVisibleCount = () => setVisibleCount(window.innerWidth > 775 ? 3 : window.innerWidth >= 768 ? 2 : 1)
 		updateVisibleCount()
 		window.addEventListener('resize', updateVisibleCount)
 		return () => window.removeEventListener('resize', updateVisibleCount)
 	}, [])
 
 	useEffect(() => {
-		const timer = window.setInterval(() => setActiveIndex((current) => current + 1), 4500)
-		return () => window.clearInterval(timer)
-	}, [])
+		setActiveIndex((current) => Math.min(current, maxIndex))
+	}, [maxIndex])
 
 	useEffect(() => {
-		if (activeIndex >= reviews.length * 2) setActiveIndex(reviews.length)
-	}, [activeIndex, reviews.length])
+		if (isPaused || reviews.length < 2) return undefined
+		const timer = window.setInterval(() => setActiveIndex((current) => Math.min(current + 1, maxIndex)), 4500)
+		return () => window.clearInterval(timer)
+	}, [isPaused, maxIndex, reviews.length])
 
 	function handlePointerDown(event) {
 		swipeStart.current = event.clientX
+		setIsPaused(true)
 		event.currentTarget.setPointerCapture?.(event.pointerId)
 	}
 
@@ -40,6 +43,7 @@ function Reviews({ reviews = temporaryReviews }) {
 		const distance = event.clientX - swipeStart.current
 		if (Math.abs(distance) > 45) setActiveIndex((current) => Math.max(0, Math.min(current + (distance < 0 ? 1 : -1), maxIndex)))
 		swipeStart.current = null
+		setIsPaused(false)
 		event.currentTarget.releasePointerCapture?.(event.pointerId)
 	}
 

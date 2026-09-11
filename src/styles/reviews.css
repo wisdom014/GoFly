@@ -125,7 +125,7 @@
 .review-platforms > div:last-child b {
   color: #00ad79;
 }
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .reviews-section {
     padding: 44px 13px 52px;
   }
@@ -156,7 +156,7 @@
     font-size: 22px;
   }
 }
-@media (min-width: 601px) and (max-width: 980px) {
+@media (min-width: 768px) and (max-width: 980px) {
   .reviews-section {
     padding: 42px 24px 54px;
   }
@@ -184,7 +184,7 @@
     padding: 26px;
   }
 }
-@media (min-width: 601px) and (max-width: 1100px) {
+@media (min-width: 768px) and (max-width: 775px) {
   .reviews-carousel {
     width: min(100%, 920px);
   }
@@ -203,7 +203,27 @@
     padding: 22px;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 776px) and (max-width: 1099px) {
+  .reviews-carousel {
+    width: min(100%, var(--content-width));
+  }
+  .review-slide {
+    flex-basis: 33.333%;
+    padding-inline: 8px;
+  }
+  .review-slide:first-child {
+    padding-left: 0;
+  }
+  .review-slide:last-child {
+    padding-right: 0;
+  }
+  .review-card {
+    min-height: 260px;
+    padding: 24px;
+  }
+}
+
+@media (min-width: 1100px) {
   .reviews-carousel {
     width: min(100%, var(--content-width));
   }
