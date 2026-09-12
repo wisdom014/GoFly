@@ -1,11 +1,11 @@
-﻿/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    SHARED UTILITIES
 ═══════════════════════════════════════════════ */
-.desktop-only { display: none; }
+.desktop-only { display: none !important; }
 .mobile-only  { display: flex; }
 
 @media (min-width: 1024px) {
-  .desktop-only { display: flex; }
+  .desktop-only { display: flex !important; }
   .mobile-only  { display: none !important; }
 }
 
@@ -328,7 +328,7 @@
 
 .wa-dropdown--up {
   position: absolute;
-  bottom: calc(100% + 6px);
+  top: calc(100% + 6px);
   right: 0;
   z-index: 300;
   min-width: 220px;
@@ -338,7 +338,7 @@
   background: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 10px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.10);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
   overflow: hidden;
 }
 .wa-dropdown--up li + li { border-top: 1px solid #f0f0f0; }

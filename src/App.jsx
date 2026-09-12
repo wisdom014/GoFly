@@ -1,3 +1,4 @@
+﻿import { useEffect } from "react";
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 import Discount from "./components/discount";
@@ -17,24 +18,48 @@ import Faq from "./components/faq";
 import Stats from "./components/stats";
 import Footer from "./components/footer";
 import Login from "./components/login";
-import ScrollAnimator from "./components/scroll-animator";
 import "./App.css";
 
+function useFadeOnScroll() {
+  useEffect(() => {
+    const run = () => {
+      const targets = document.querySelectorAll("[data-fade]");
+      if (!targets.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("fade-in");
+            } else {
+              entry.target.classList.remove("fade-in");
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      );
+
+      targets.forEach((el) => observer.observe(el));
+      return observer;
+    };
+
+    const observer = run();
+    return () => observer && observer.disconnect();
+  }, []);
+}
+
 function App() {
-  const destinationMatch = window.location.pathname.match(
-    /^\/destination\/([^/]+)/,
-  );
-  const inspirationMatch = window.location.pathname.match(
-    /^\/inspiration\/([^/]+)/,
-  );
+  useFadeOnScroll();
+
+  const destinationMatch = window.location.pathname.match(/^\/destination\/([^/]+)/);
+  const inspirationMatch = window.location.pathname.match(/^\/inspiration\/([^/]+)/);
 
   if (destinationMatch) {
     return (
       <>
-        <ScrollAnimator />
         <Navbar />
-        <DestinationPage slug={destinationMatch[1]} />
-        <Companies />
+        <div data-fade><DestinationPage slug={destinationMatch[1]} /></div>
+        <div data-fade><Companies /></div>
         <Footer />
       </>
     );
@@ -43,10 +68,9 @@ function App() {
   if (inspirationMatch) {
     return (
       <>
-        <ScrollAnimator />
         <Navbar />
-        <InspirationsPage slug={inspirationMatch[1]} />
-        <Companies />
+        <div data-fade><InspirationsPage slug={inspirationMatch[1]} /></div>
+        <div data-fade><Companies /></div>
         <Footer />
       </>
     );
@@ -55,10 +79,9 @@ function App() {
   if (window.location.pathname === "/inspirations") {
     return (
       <>
-        <ScrollAnimator />
         <Navbar />
-        <InspirationsPage />
-        <Companies />
+        <div data-fade><InspirationsPage /></div>
+        <div data-fade><Companies /></div>
         <Footer />
       </>
     );
@@ -67,9 +90,8 @@ function App() {
   if (window.location.pathname === "/login") {
     return (
       <>
-        <ScrollAnimator />
         <Navbar />
-        <Login />
+        <div data-fade><Login /></div>
         <Footer />
       </>
     );
@@ -77,22 +99,21 @@ function App() {
 
   return (
     <>
-      <ScrollAnimator />
       <Navbar />
       <Hero />
-      <Discount />
-      <Destination />
-      <Service />
-      <Popular />
-      <Happiness />
-      <Deals />
-      <Customize />
-      <Companies />
-      <DayTrips />
-      <Inspiration />
-      <Reviews />
-      <Faq />
-      <Stats />
+      <div data-fade><Discount /></div>
+      <div data-fade><Destination /></div>
+      <div data-fade><Service /></div>
+      <div data-fade><Popular /></div>
+      <div data-fade><Happiness /></div>
+      <div data-fade><Deals /></div>
+      <div data-fade><Customize /></div>
+      <div data-fade><Companies /></div>
+      <div data-fade><DayTrips /></div>
+      <div data-fade><Inspiration /></div>
+      <div data-fade><Reviews /></div>
+      <div data-fade><Faq /></div>
+      <div data-fade><Stats /></div>
       <Footer />
     </>
   );

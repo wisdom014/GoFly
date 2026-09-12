@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import "../styles/navbar.css";
 
 const navLinks = [
@@ -10,12 +10,24 @@ const navLinks = [
   {
     label: "Destinations",
     href: "/destinations",
-    children: ["Africa", "Asia", "Europe", "Middle East", "North America", "Oceania"],
+    children: [
+      "Africa",
+      "Asia",
+      "Europe",
+      "Middle East",
+      "North America",
+      "Oceania",
+    ],
   },
   {
     label: "Travel Package",
     href: "/packages",
-    children: ["Adventure Tours", "Honeymoon", "Holiday Packages", "Desert Safari"],
+    children: [
+      "Adventure Tours",
+      "Honeymoon",
+      "Holiday Packages",
+      "Desert Safari",
+    ],
   },
   {
     label: "Visa",
@@ -45,7 +57,9 @@ function NavItem({ link, isActive, onToggle }) {
           <button
             className="sidebar-nav-toggle"
             type="button"
-            aria-label={isActive ? `Collapse ${link.label}` : `Expand ${link.label}`}
+            aria-label={
+              isActive ? `Collapse ${link.label}` : `Expand ${link.label}`
+            }
             aria-expanded={isActive}
             onClick={onToggle}
           >
@@ -57,7 +71,9 @@ function NavItem({ link, isActive, onToggle }) {
         <ul className="sidebar-subnav">
           {link.children.map((child) => (
             <li key={child}>
-              <a href={`${link.href}/${child.toLowerCase().replace(/\s+/g, "-")}`}>
+              <a
+                href={`${link.href}/${child.toLowerCase().replace(/\s+/g, "-")}`}
+              >
                 {child}
               </a>
             </li>
@@ -73,7 +89,9 @@ function DesktopDropdown({ link }) {
   if (link.children.length === 0) {
     return (
       <li className="desktop-nav-item">
-        <a className="desktop-nav-link" href={link.href}>{link.label}</a>
+        <a className="desktop-nav-link" href={link.href}>
+          {link.label}
+        </a>
       </li>
     );
   }
@@ -91,7 +109,9 @@ function DesktopDropdown({ link }) {
         <ul className="desktop-dropdown">
           {link.children.map((child) => (
             <li key={child}>
-              <a href={`${link.href}/${child.toLowerCase().replace(/\s+/g, "-")}`}>
+              <a
+                href={`${link.href}/${child.toLowerCase().replace(/\s+/g, "-")}`}
+              >
                 {child}
               </a>
             </li>
@@ -134,7 +154,11 @@ function Navbar() {
           </a>
 
           {/* Search — desktop only */}
-          <form className="header-search" role="search" onSubmit={(e) => e.preventDefault()}>
+          <form
+            className="header-search desktop-only"
+            role="search"
+            onSubmit={(e) => e.preventDefault()}
+          >
             <span className="header-search-icon" aria-hidden="true" />
             <input
               type="search"
@@ -149,8 +173,14 @@ function Navbar() {
             <span className="need-help desktop-only">Need Help?</span>
 
             {/* Language */}
-            <button className="language-select" type="button" aria-label="Select language">
-              <span className="globe-icon" aria-hidden="true">&#8853;</span>
+            <button
+              className="language-select"
+              type="button"
+              aria-label="Select language"
+            >
+              <span className="globe-icon" aria-hidden="true">
+                &#8853;
+              </span>
               <span>EN</span>
               <span className="chevron" aria-hidden="true" />
             </button>
@@ -161,7 +191,11 @@ function Navbar() {
             </a>
 
             {/* Mobile/tablet controls */}
-            <button className="icon-button search-button mobile-only" type="button" aria-label="Search">
+            <button
+              className="icon-button search-button mobile-only"
+              type="button"
+              aria-label="Search"
+            >
               <span className="search-icon" aria-hidden="true" />
             </button>
             <button
@@ -172,7 +206,9 @@ function Navbar() {
               onClick={toggleMenu}
             >
               <span className="menu-icon" aria-hidden="true">
-                <i /><i /><i />
+                <i />
+                <i />
+                <i />
               </span>
             </button>
           </div>
@@ -196,31 +232,35 @@ function Navbar() {
               onClick={() => setWaOpen((p) => !p)}
               aria-expanded={waOpen}
             >
-              <span className="wa-icon" aria-hidden="true">◉</span>
+              <span className="wa-icon" aria-hidden="true">
+                ◉
+              </span>
               <span className="wa-text">
                 <small>WhatsApp</small>
                 <strong>+91 345 533 865</strong>
               </span>
-              <span className="wa-arrow" aria-hidden="true">{waOpen ? "▴" : "▾"}</span>
+              <span className="wa-arrow" aria-hidden="true">
+                {waOpen ? "▴" : "▾"}
+              </span>
             </button>
             {waOpen && (
               <ul className="wa-dropdown wa-dropdown--up">
                 <li>
-                  <a href="https://wa.me/91345533865" target="_blank" rel="noreferrer">
-                    <span className="wa-contact-icon wa-green">◉</span>
-                    <span className="wa-contact-text"><small>WhatsApp</small><strong>+91 345 533 865</strong></span>
-                  </a>
-                </li>
-                <li>
                   <a href="mailto:info@example.com">
                     <span className="wa-contact-icon wa-mail">✉</span>
-                    <span className="wa-contact-text"><small>Mail Support</small><strong>info@example.com</strong></span>
+                    <span className="wa-contact-text">
+                      <small>Mail Support</small>
+                      <strong>info@example.com</strong>
+                    </span>
                   </a>
                 </li>
                 <li>
                   <a href="tel:+91345533865">
                     <span className="wa-contact-icon wa-red">▶</span>
-                    <span className="wa-contact-text"><small>More Inquiry</small><strong>+91 345 533 865</strong></span>
+                    <span className="wa-contact-text">
+                      <small>More Inquiry</small>
+                      <strong>+91 345 533 865</strong>
+                    </span>
                   </a>
                 </li>
               </ul>
@@ -231,13 +271,25 @@ function Navbar() {
 
       {/* ── Sidebar overlay ── */}
       {menuOpen && (
-        <div className="sidebar-overlay" onClick={toggleMenu} aria-hidden="true" />
+        <div
+          className="sidebar-overlay"
+          onClick={toggleMenu}
+          aria-hidden="true"
+        />
       )}
 
       {/* ── Sidebar (mobile/tablet) ── */}
-      <aside className={`sidebar${menuOpen ? " sidebar--open" : ""}`} aria-hidden={!menuOpen}>
+      <aside
+        className={`sidebar${menuOpen ? " sidebar--open" : ""}`}
+        aria-hidden={!menuOpen}
+      >
         <div className="sidebar-header">
-          <a className="brand" href="/" aria-label="GoFLY Travel home" onClick={toggleMenu}>
+          <a
+            className="brand"
+            href="/"
+            aria-label="GoFLY Travel home"
+            onClick={toggleMenu}
+          >
             <span className="brand-mark" aria-hidden="true">
               <span className="brand-mark-globe">+</span>
               <span className="brand-mark-lines" />
@@ -247,7 +299,12 @@ function Navbar() {
               <small>Travel.co</small>
             </span>
           </a>
-          <button className="sidebar-close" type="button" aria-label="Close menu" onClick={toggleMenu}>
+          <button
+            className="sidebar-close"
+            type="button"
+            aria-label="Close menu"
+            onClick={toggleMenu}
+          >
             ×
           </button>
         </div>
@@ -273,31 +330,35 @@ function Navbar() {
             onClick={() => setWaOpen((prev) => !prev)}
             aria-expanded={waOpen}
           >
-            <span className="wa-icon" aria-hidden="true">◉</span>
+            <span className="wa-icon" aria-hidden="true">
+              ◉
+            </span>
             <span className="wa-text">
               <small>WhatsApp</small>
               <strong>+91 345 533 865</strong>
             </span>
-            <span className="wa-arrow" aria-hidden="true">{waOpen ? "▴" : "▾"}</span>
+            <span className="wa-arrow" aria-hidden="true">
+              {waOpen ? "▴" : "▾"}
+            </span>
           </button>
           {waOpen && (
             <ul className="wa-dropdown">
               <li>
-                <a href="https://wa.me/91345533865" target="_blank" rel="noreferrer">
-                  <span className="wa-contact-icon wa-green">◉</span>
-                  <span className="wa-contact-text"><small>WhatsApp</small><strong>+91 345 533 865</strong></span>
-                </a>
-              </li>
-              <li>
                 <a href="mailto:info@example.com">
                   <span className="wa-contact-icon wa-mail">✉</span>
-                  <span className="wa-contact-text"><small>Mail Support</small><strong>info@example.com</strong></span>
+                  <span className="wa-contact-text">
+                    <small>Mail Support</small>
+                    <strong>info@example.com</strong>
+                  </span>
                 </a>
               </li>
               <li>
                 <a href="tel:+91345533865">
                   <span className="wa-contact-icon wa-red">▶</span>
-                  <span className="wa-contact-text"><small>More Inquiry</small><strong>+91 345 533 865</strong></span>
+                  <span className="wa-contact-text">
+                    <small>More Inquiry</small>
+                    <strong>+91 345 533 865</strong>
+                  </span>
                 </a>
               </li>
             </ul>
